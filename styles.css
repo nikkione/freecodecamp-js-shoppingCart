@@ -1,3 +1,4 @@
+/* Reset and Box Model */
 *,
 *::before,
 *::after {
@@ -6,111 +7,148 @@
     box-sizing: border-box;
 }
 
+/* Root Colors */
 :root {
-    --dark-grey: #1b1b32;
-    --light-grey: #f5f6f7;
+    --dark-grey: #2e2e2e;
+    --light-grey: #f8f9fa;
     --black: #000;
     --white: #fff;
-    --grey: #3b3b4f;
-    --golden-yellow: #fecc4c;
-    --yellow: #ffcc4c;
-    --gold: #feac32;
-    --orange: #ffac33;
-    --dark-orange: #f89808;
+    --grey: #4a4a4a;
+    --golden-yellow: #ffd700;
+    --yellow: #ffeb3b;
+    --gold: #ffac33;
+    --orange: #ff9800;
+    --dark-orange: #ff5722;
 }
 
+/* Body and Default Styles */
 body {
-    background-color: var(--dark-grey);
+    font-family: 'Arial', sans-serif;
+    background-color: var(--light-grey);
+    color: var(--grey);
 }
 
-.title {
-    color: var(--light-grey);
+/* Header */
+header .title {
+    color: var(--dark-grey);
     text-align: center;
     margin: 25px 0;
+    font-size: 2rem;
 }
 
-#dessert-card-container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
+/* Main Content */
+main {
+    padding: 20px;
 }
 
-.dessert-card {
-    background-color: var(--light-grey);
-    padding: 15px;
-    text-align: center;
-    border-radius: 15px;
-    margin: 20px 10px;
-}
-
-.dessert-price {
-    font-size: 1.2rem;
-}
-
-.btn {
-    display: block;
-    cursor: pointer;
-    width: 100px;
-    color: var(--dark-grey);
-    background-color: var(--gold);
-    background-image: linear-gradient(var(--golden-yellow), var(--orange));
-    border-color: var(--gold);
-    border-width: 3px;
-}
-
-.btn:hover {
-    background-image: linear-gradient(var(--yellow), var(--dark-orange));
-}
-
+/* Cart Button */
 #cart-btn {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 20px;
+    right: 20px;
+    font-size: 1rem;
 }
 
-.add-to-cart-btn {
-    margin: 30px auto 10px;
-}
-
+/* Cart Container */
 #cart-container {
     display: none;
+    /* Initially hidden */
     position: absolute;
-    top: 60px;
-    right: 0;
-    background-color: var(--light-grey);
-    width: 200px;
-    height: 400px;
-    border: 8px double var(--black);
-    border-radius: 15px;
-    text-align: center;
-    font-size: 1.2rem;
-    overflow-y: scroll;
+    top: 70px;
+    /* Adjusted for spacing */
+    right: 20px;
+    background-color: var(--white);
+    width: 300px;
+    padding: 20px;
+    border: 3px solid var(--grey);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    /* Ensure it's above other elements */
+    overflow: auto;
+    /* Allows scrolling if content overflows */
 }
 
+/* Product Style Inside the Cart */
 .product {
-    margin: 25px 0;
+    border-bottom: 1px solid var(--grey);
+    /* Add separation */
+    padding: 10px 0;
+    /* Add padding */
 }
 
-.product-count {
-    display: inline-block;
-    margin-right: 10px;
+/* Prices within the Cart */
+.product p {
+    font-weight: bold;
+    /* Make the price bold */
+    color: var(--dark-grey);
+    /* Make price more visible */
 }
 
+/* Ensure the last product does not have a border */
+.product:last-child {
+    border-bottom: none;
+}
+
+/* Dessert Cards Container */
+#dessert-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    /* Adds space between cards */
+}
+
+/* Individual Dessert Cards */
+.dessert-card {
+    background-color: var(--white);
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.dessert-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Dessert Price and Category Styles */
+.dessert-price,
 .product-category {
     margin: 10px 0;
 }
 
+/* Button Styles */
+.btn {
+    display: inline-block;
+    /* Changed to inline-block for better control */
+    cursor: pointer;
+    padding: 10px 15px;
+    color: var(--white);
+    background-color: var(--golden-yellow);
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: var(--orange);
+}
+
+/* Responsive Design for Larger Screens */
 @media (min-width: 768px) {
     #dessert-card-container {
-        flex-direction: row;
+        justify-content: space-around;
+        /* Adjusts alignment */
     }
 
     .dessert-card {
-        flex: 1 0 21%;
+        width: calc(33% - 40px);
+        /* Three cards per row with spacing */
     }
 
     #cart-container {
-        width: 300px;
+        width: 350px;
     }
 }
